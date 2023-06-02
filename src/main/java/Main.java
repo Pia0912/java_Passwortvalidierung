@@ -3,6 +3,10 @@ public class Main {
         //String Test = checkIfKnownWeakPasswordsIncluded("123");
     }
 
+
+//Methods
+//==========================================
+
     public static int checkStringLength(String word) {
         return word.length();
     }
@@ -21,30 +25,15 @@ public class Main {
 
 
     public static String checkIfKnownWeakPasswordsIncluded(String word) {
-        String result = "Check failed";
-        switch (word) {
-            case "123":
-                result = "Password not strong enough";
-                break;
-            case "1234":
-                result = "Password not strong enough";
-                break;
-            case "123456":
-                result = "Password not strong enough";
-                break;
-            case "12345678":
-                result = "Password not strong enough";
-                break;
-            case "123456789":
-                result = "Password not strong enough";
-                break;
-            case "qwerty":
-                result = "Password not strong enough";
-                break;
-            default:
-                result = "Password valid";
-                break;
-        }
+        String result = switch (word) {
+            case "123" -> "Password not strong enough";
+            case "1234" -> "Password not strong enough";
+            case "123456" -> "Password not strong enough";
+            case "12345678" -> "Password not strong enough";
+            case "123456789" -> "Password not strong enough";
+            case "qwerty" -> "Password not strong enough";
+            default -> "Password valid";
+        };
         return result;
     }
 

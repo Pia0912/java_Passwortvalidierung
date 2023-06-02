@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 public class MainTest {
 
     @Test
-    void yieldLength7_whenPuttingInAufgabe() {
+    void yield7_whenCheckingLengthAufgabe() {
         String input = "Aufgabe";
 
         int actual = Main.checkStringLength(input);
@@ -14,7 +14,7 @@ public class MainTest {
     }
 
     @Test
-    void yieldtrue_whenPuttingInAufgabe1() {
+    void yieldtrue_whenCheckingNumberAufgabe1() {
         String input = "Aufgabe1";
 
         boolean actual = Main.checkIfNumbersIncluded(input);
@@ -24,7 +24,7 @@ public class MainTest {
     }
 
     @Test
-    void yieldtfalse_whenPuttingInAufgabe() {
+    void yieldtfalse_whenCheckingNumberAufgabe() {
         String input = "Aufgabe";
 
         boolean actual = Main.checkIfNumbersIncluded(input);
@@ -34,7 +34,7 @@ public class MainTest {
     }
 
     @Test
-    void yieldtrue_whenPuttinginWelt() {
+    void yieldtrue_whenCheckingCapitalWelt() {
         String input = "Welt";
 
         boolean actual = Main.checkIfCapitalLettersIncluded(input);
@@ -62,12 +62,23 @@ public class MainTest {
 
         Assertions.assertEquals(actual, expected);
     }
- @Test
+
+    @Test
     void yieldnotStrong_whenCheckingWeakPassword12345678() {
         String input = "12345678";
 
         String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
         String expected = "Password not strong enough";
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void yieldvalid_whenCheckingWeakPasswordsdhE33() {
+        String input = "sdhE33";
+
+        String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
+        String expected = "Password valid";
 
         Assertions.assertEquals(actual, expected);
     }
