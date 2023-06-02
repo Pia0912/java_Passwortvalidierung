@@ -1,10 +1,9 @@
 package org.example;
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
- //Eingabe des Passworts
+        // Eingabe des Passworts
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please enter your password: ");
@@ -12,71 +11,63 @@ public class Main {
 
         scanner.close();
 
-//Ausgabe der eventuellen Fehlermeldung (Allgemeine Nachricht + individueller in Methoden geprüfter error Message)
-        String errorMessage = checkPasswordStrength(password, 8);
+        // Ausgabe der eventuellen Fehlermeldung (Allgemeine Nachricht + individueller in Methoden geprüfter Fehlermeldung)
+        String errorMessage = checkPasswordLength(password, 8);
         if (errorMessage.isEmpty()) {
-            System.out.println("Password is strong enough.");
+            System.out.println("Password is strong enough. Please remember your Password.");
         } else {
-            System.out.println("Please try again " + errorMessage);
+            System.out.println("Please try again: " + errorMessage);
         }
     }
 
-    // 1 Methoden Check mit Strings
-    // -> ob Passwort lang genug ist
-    public static String checkPasswordStrength(String password, int minimumLength) {
+    // Überprüfung der Passwortlänge
+    public static String checkPasswordLength(String password, int minimumLength) {
         if (password.length() < minimumLength) {
             return "Password must have at least " + minimumLength + " characters.";
         }
-    // automatischer Error, wenn Passwort vordefinierten entspricht
-        if (password.equals("passwort123")) {
-            return "Password is a weak password. Please choose a stronger password.";
-        }
-        if (password.equals("passwort")) {
-            return "Password is a weak password. Please choose a stronger password.";
-        }
-        if (password.equals("1234567")) {
-            return "Password is a weak password. Please choose a stronger password.";
-        }
-
-        return checkPasswordComplexity(password);
+        return checkPasswordStrength(password);
     }
 
-    // Check, ob Passwort mindestens eine Zahl, einen Großbuchstabe und einen Kleinbuchstabe enthält
+    // Überprüfung der Passwortstärke
+    public static String checkPasswordStrength(String password) {
+        // Überprüfung auf bekannte schwache Passwörter
+        if (password.contains("123")) {
+            return "Password is too weak. Please choose a more complex password.";
+        }
+        return checkPasswordComplexity(password);
+    }
+    // Überprüfung auf Großbuchstaben
     public static String checkPasswordComplexity(String password) {
-        boolean hasNumber = false;
-        boolean hasUppercase = false;
-        boolean hasLowercase = false;
 
-        char[] passwordArray = password.toCharArray();
-        int passwordLength = passwordArray.length;
-
-        for (int i = 0; i < passwordLength; i++) {
-            char characters = passwordArray[i];
-            if (Character.isDigit(characters)) {
-                hasNumber = true;
-            } else if (Character.isUpperCase(characters)) {
-                hasUppercase = true;
-            } else if (Character.isLowerCase(characters)) {
-                hasLowercase = true;
-            }
+        if (!checkIfCapitalLettersIncluded(password)) {
+            return "Password must contain at least one uppercase character.";
         }
 
-
-            StringBuilder errorMessage = new StringBuilder();
-            if (!hasNumber) {
-                errorMessage.append("Password must contain at least one number. ");
-            }
-
-            if (!hasUppercase) {
-                errorMessage.append("Password must contain at least one uppercase letter. ");
-            }
-
-            if (!hasLowercase) {
-                errorMessage.append("Password must contain at least one lowercase letter. ");
-            }
-
-            return errorMessage.toString();
+        if (!checkIfLowerCaseLettersIncluded(password)) {
+            return "Password must contain at least one uppercase character.";
         }
+
+        // Überprüfung auf Zahlen
+        if (!checkIfNumbersIncluded(password)) {
+            return "Password must contain at least one number.";
+        }
+
+        // Weitere Überprüfungen auf Passwortstärke...
+
+        return ""; // Password strength is strong
+    }
+
+    // Überprüfung, ob Großbuchstaben enthalten sind
+    public static boolean checkIfCapitalLettersIncluded(String word) {
+        return word.matches(".*[A-Z].*");
+    }
+
+    public static boolean checkIfLowerCaseLettersIncluded(String word) {
+        return word.matches(".*[a-z].*");
+    }
+
+    // Überprüfung, ob Zahlen enthalten sind
+    public static boolean checkIfNumbersIncluded(String word) {
+        return word.matches(".*[0-9].*");
+    }
 }
-
-
