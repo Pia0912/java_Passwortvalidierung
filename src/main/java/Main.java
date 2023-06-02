@@ -1,7 +1,13 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        createPassword("test");
-        createPassword("passwort");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Passwort eingeben: ");
+        String password = scanner.next();
+        createPassword(password);
+        //createPassword("test");
+        //createPassword("passwort");
     }
     public static void createPassword(String password) {
         boolean length = passwordLength(password);
@@ -70,14 +76,14 @@ public class Main {
         return true;
     }
     public static boolean largeChar(String password) {
-        /*char[] charArray = password.toCharArray();
+        /*
+        char[] charArray = password.toCharArray();
         boolean large= false;
         for (int i = 0; i < password.length(); i++) {
             if(Character.isUpperCase(charArray[i]))
                 large = true;
         }
         return large;
-
          */
         return password.matches(".*[A-Z].*");
     }
