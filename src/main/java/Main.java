@@ -18,23 +18,7 @@ public class Main {
             return false;
         }
     }
-//==============================================
-    /*
-        public static String checkIfKnownWeakPasswordsIncluded(String word){
-            String[] weakPasswords = {"123", "1234", "123456", "12345678", "123456789", "qwerty"};
-            String result = "Check failed";
-           for (int i = 0; i < weakPasswords.length; i++) {
-               if (word.contains(weakPasswords[i])) {
-                   result = "Password not strong enough";
-                   break;
-               } else {
-                   result = "Password valid";
-               }
-           }
-           return result;
-        }
-     */
-//==============================================
+
 
     public static String checkIfKnownWeakPasswordsIncluded(String word) {
         String result = "Check failed";
@@ -63,5 +47,26 @@ public class Main {
         }
         return result;
     }
+
+
+//==============================================
+//weak password check with if statement
+    /*
+        public static String checkIfKnownWeakPasswordsIncluded(String word){
+            String[] weakPasswords = {"123", "1234", "123456", "12345678", "123456789", "qwerty"};
+            String result = "Check failed";
+           for (int i = 0; i < weakPasswords.length; i++) {
+               if (word.contains(weakPasswords[i])) {
+                   result = "Password not strong enough";
+                   break;
+               } else {
+                   result = "Password valid";
+               }
+           }
+           return result;
+        }
+     */
+//==============================================
+
 
 }
