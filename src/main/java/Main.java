@@ -61,7 +61,6 @@ public class Main {
             }
         }
     }
-
     public static boolean badPassword(String password) {
         String[] badPass = {"123456", "passwort"};
         for (String pass : badPass) {
@@ -71,33 +70,39 @@ public class Main {
         return true;
     }
     public static boolean largeChar(String password) {
-        char[] charArray = password.toCharArray();
+        /*char[] charArray = password.toCharArray();
         boolean large= false;
         for (int i = 0; i < password.length(); i++) {
             if(Character.isUpperCase(charArray[i]))
                 large = true;
         }
         return large;
-    }
 
+         */
+        return password.matches(".*[A-Z].*");
+    }
     public static boolean smallChar(String password) {
-        char[] charArray = password.toCharArray();
+        /*char[] charArray = password.toCharArray();
         boolean small= false;
         for (int i = 0; i < password.length(); i++) {
-            if(Character.isLowerCase(charArray[i]))
+            if(Character.isLowerCase((charArray[i])))
                 small = true;
         }
         return small;
-    }
 
+         */
+        return password.matches(".*[a-z].*");
+    }
     public static boolean isThereNumber(String password) {
-        char[] charArray = password.toCharArray();
+        /*char[] charArray = password.toCharArray();
         boolean number = false;
         for (int i = 0; i < password.length(); i++) {
             if(Character.isDigit(charArray[i]))
                 number = true;
         }
         return number;
+        */
+        return password.matches(".*[0-9].*");
     }
 
     public static boolean passwordLength(String length){
