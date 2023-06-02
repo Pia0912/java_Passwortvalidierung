@@ -33,27 +33,27 @@ public class Main {
         }else
             answer += "Großbuchstabe: keine! ";
 
-        switch (count){
-            case 1:
+        switch (count) {
+            case 1 -> {
                 System.out.println("passwort: schwach");
                 System.out.println(answer);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("passwort: mittel");
                 System.out.println(answer);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("passwort: gut");
                 System.out.println(answer);
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.println("passwort: sehr gut");
                 System.out.println(answer);
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("passwort: sehr schwach");
                 System.out.println(answer);
-                break;
+            }
         }
         if(!notBad)
             answer = "Das Passwort ist schei**";
@@ -98,7 +98,6 @@ public class Main {
     }
 
     public static boolean passwordLength(String length){
-        boolean ok = length.length() > 5;
-        return ok;
+        return length.length() > 5;
     }
 }
