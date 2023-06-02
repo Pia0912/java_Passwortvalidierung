@@ -39,10 +39,11 @@ public class Main {
                 password.contains("passwort")) {
             return "Password is too weak. Please choose a more complex password.";
         } else {
+            // Weitere Überprüfungen auf Passwortstärke...
             return "";
         }
     }
-    // Überprüfung auf Großbuchstaben
+    // Errorausgabe für Checks
     public static String checkPasswordComplexity(String password) {
         // Überprüfung auf Zahlen
         if (!checkIfNumbersIncluded(password)) {
