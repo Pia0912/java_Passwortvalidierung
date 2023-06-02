@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         createPassword("test");
+        createPassword("passwort");
     }
     public static void createPassword(String password) {
         boolean length = passwordLength(password);
@@ -10,53 +11,55 @@ public class Main {
         boolean notBad = badPassword(password);
 
         //Analyse of Länge, Groß/Kleinschreibung, Zahlen
-        int count = 0;
-        String answer ="";
-        if (length) {
-            count++;
-            answer += "Länge: ok ";
-        }else
-            answer += "Länge: zu kurz! ";
-        if(number){
-            count++;
-            answer += "Nummern: ok ";
-        }else
-            answer += "Nummern: keine! ";
-        if(small){
-            count++;
-            answer += "Kleinbuchstaben: ok ";
-        }else
-            answer += "Kleinbuchstaben: keine! ";
-        if(large){
-            count++;
-            answer += "Großbuchstabe: ok ";
-        }else
-            answer += "Großbuchstabe: keine! ";
+        if(!notBad) {
+            System.out.println("Das Passwort ist schei**");
+        }else {
+            int count = 0;
+            String answer = "";
+            if (length) {
+                count++;
+                answer += "Länge: ok ";
+            } else
+                answer += "Länge: zu kurz! ";
+            if (number) {
+                count++;
+                answer += "Nummern: ok ";
+            } else
+                answer += "Nummern: keine! ";
+            if (small) {
+                count++;
+                answer += "Kleinbuchstaben: ok ";
+            } else
+                answer += "Kleinbuchstaben: keine! ";
+            if (large) {
+                count++;
+                answer += "Großbuchstabe: ok ";
+            } else
+                answer += "Großbuchstabe: keine! ";
 
-        switch (count) {
-            case 1 -> {
-                System.out.println("passwort: schwach");
-                System.out.println(answer);
-            }
-            case 2 -> {
-                System.out.println("passwort: mittel");
-                System.out.println(answer);
-            }
-            case 3 -> {
-                System.out.println("passwort: gut");
-                System.out.println(answer);
-            }
-            case 4 -> {
-                System.out.println("passwort: sehr gut");
-                System.out.println(answer);
-            }
-            default -> {
-                System.out.println("passwort: sehr schwach");
-                System.out.println(answer);
+            switch (count) {
+                case 1 -> {
+                    System.out.println("passwort: schwach");
+                    System.out.println(answer);
+                }
+                case 2 -> {
+                    System.out.println("passwort: mittel");
+                    System.out.println(answer);
+                }
+                case 3 -> {
+                    System.out.println("passwort: gut");
+                    System.out.println(answer);
+                }
+                case 4 -> {
+                    System.out.println("passwort: sehr gut");
+                    System.out.println(answer);
+                }
+                default -> {
+                    System.out.println("passwort: sehr schwach");
+                    System.out.println(answer);
+                }
             }
         }
-        if(!notBad)
-            answer = "Das Passwort ist schei**";
     }
 
     public static boolean badPassword(String password) {
