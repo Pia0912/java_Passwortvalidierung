@@ -1,56 +1,89 @@
 package org.example;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 
+import org.example.Main;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MainTest {
+
     @Test
-    void testCheckPasswordLength() {
-        //Given int number = 2;
+    void yield7_whenCheckingLengthAufgabe() {
+        String input = "Aufgabe";
 
-        //When
-        String actual = Main.checkPasswordLength("pia234", 8);
+        int actual = Main.checkStringLength(input);
+        int expected = 7;
 
-        //Then
-        String expected = "Password must have at least 8 characters.";
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(actual, expected);
     }
 
     @Test
-    void testCheckPasswordStrength1() {
-        //Given int number = 2;
+    void yieldtrue_whenCheckingNumberAufgabe1() {
+        String input = "Aufgabe1";
 
-        //When
-        String actual = Main.checkPasswordStrength("Pia123");
+        boolean actual = Main.checkIfNumbersIncluded(input);
+        boolean expected = true;
 
-        //Then
-        String expected = "Password is too weak. Please choose a more complex password.";
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(actual, expected);
     }
+
     @Test
-    void testCheckPasswordComplexity() {
-        //Given int number = 2;
+    void yieldtfalse_whenCheckingNumberAufgabe() {
+        String input = "Aufgabe";
 
-        //When
-        String actual = Main.checkPasswordComplexity("pia123");
+        boolean actual = Main.checkIfNumbersIncluded(input);
+        boolean expected = false;
 
-        //Then
-        String expected = "Password must contain at least one uppercase character.";
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(actual, expected);
     }
+
     @Test
-    void testCheckPasswordComplexity2() {
-        //Given int number = 2;
+    void yieldtrue_whenCheckingCapitalWelt() {
+        String input = "Welt";
 
-        //When
-        String actual = Main.checkPasswordComplexity("PIAPIA123");
+        boolean actual = Main.checkIfCapitalLettersIncluded(input);
+        boolean expected = true;
 
-        //Then
-        String expected = "Password must contain at least one lowercase character.";
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(actual, expected);
     }
+
+    @Test
+    void yieldnotStrong_whenCheckingWeakPasswordqwerty() {
+        String input = "qwerty";
+
+        String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
+        String expected = "Password not strong enough";
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void yieldnotStrong_whenCheckingWeakPassword123() {
+        String input = "123";
+
+        String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
+        String expected = "Password not strong enough";
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void yieldnotStrong_whenCheckingWeakPassword12345678() {
+        String input = "12345678";
+
+        String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
+        String expected = "Password not strong enough";
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void yieldvalid_whenCheckingWeakPasswordsdhE33() {
+        String input = "sdhE33";
+
+        String actual = Main.checkIfKnownWeakPasswordsIncluded(input);
+        String expected = "Password valid";
+
+        Assertions.assertEquals(actual, expected);
+    }
+
 }

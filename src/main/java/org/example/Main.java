@@ -1,79 +1,75 @@
 package org.example;
+
 import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
-        // Eingabe des Passworts
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Please enter your password: ");
+        System.out.println("Please insert password: ");
         String password = scanner.nextLine();
 
-        scanner.close();
+        System.out.println("Password length is: " + checkStringLength(password));
+        System.out.println("Password has numbers included: " + checkIfNumbersIncluded(password));
+        System.out.println("Password has capital letters included: " + checkIfCapitalLettersIncluded(password));
+        System.out.println("Password weakness: " + checkIfKnownWeakPasswordsIncluded(password));
 
-        // Ausgabe der eventuellen Fehlermeldung (Allgemeine Nachricht + individueller in Methoden geprüfter Fehlermeldung)
-        String errorMessage = checkPasswordLength(password, 8);
-        if (errorMessage.isEmpty()) {
-            System.out.println("Password is strong enough. Please remember your Password.");
-        } else {
-            System.out.println("Please try again: " + errorMessage);
-        }
+
+
     }
 
-    // Überprüfung der Passwortlänge
-    public static String checkPasswordLength(String password, int minimumLength) {
-        if (password.length() < minimumLength) {
-            return "Password must have at least " + minimumLength + " characters.";
-        }
-        return checkPasswordStrength(password);
+
+//Methods
+//==========================================
+
+    public static int checkStringLength(String word) {
+        return word.length();
     }
 
-    // Überprüfung der Passwortstärke
-    public static String checkPasswordStrength(String password) {
-        // Überprüfung auf bekannte schwache Passwörter
-        if (password.contains("123") ||password.contains("1234") ||
-                password.contains("12345") ||
-                password.contains("123456") ||
-                password.contains("12345678") ||
-                password.contains("123456789") ||
-                password.contains("passwort")) {
-            return "Password is too weak. Please choose a more complex password.";
-        } else {
-            // Weitere Überprüfungen auf Passwortstärke...
-            return "";
-        }
-    }
-    // Errorausgabe für Checks
-    public static String checkPasswordComplexity(String password) {
-        // Überprüfung auf Zahlen
-        if (!checkIfNumbersIncluded(password)) {
-            return "Password must contain at least one number.";
-        }
-        // Überprüfung auf Großbuchstaben
-        if (!checkIfCapitalLettersIncluded(password)) {
-            return "Password must contain at least one uppercase character.";
-        }
-        // Überprüfung auf Kleinbuchstaben
-        if (!checkIfLowerCaseLettersIncluded(password)) {
-            return "Password must contain at least one lowercase character.";
-        }
-
-        // Weitere Überprüfungen auf Passwortstärke...
-
-        return ""; // Password strength is strong
-    }
-
-    // Überprüfung, ob Großbuchstaben enthalten sind
-    public static boolean checkIfCapitalLettersIncluded(String word) {
-        return word.matches(".*[A-Z].*");
-    }
-
-    public static boolean checkIfLowerCaseLettersIncluded(String word) {
-        return word.matches(".*[a-z].*");
-    }
-
-    // Überprüfung, ob Zahlen enthalten sind
     public static boolean checkIfNumbersIncluded(String word) {
         return word.matches(".*[0-9].*");
     }
+
+    public static boolean checkIfCapitalLettersIncluded(String word) {
+        if (word.matches(".*[A-Z].*")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String checkIfKnownWeakPasswordsIncluded(String word) {
+        String result = switch (word.toLowerCase()) {
+            case "123" -> "Password not strong enough";
+            case "1234" -> "Password not strong enough";
+            case "123456" -> "Password not strong enough";
+            case "12345678" -> "Password not strong enough";
+            case "123456789" -> "Password not strong enough";
+            case "qwerty" -> "Password not strong enough";
+            default -> "Password valid";
+        };
+        return result;
+    }
+
+
+//==============================================
+//weak password check with if statement
+    /*
+        public static String checkIfKnownWeakPasswordsIncluded(String word){
+            String[] weakPasswords = {"123", "1234", "123456", "12345678", "123456789", "qwerty"};
+            String result = "Check failed";
+           for (int i = 0; i < weakPasswords.length; i++) {
+               if (word.contains(weakPasswords[i])) {
+                   result = "Password not strong enough";
+                   break;
+               } else {
+                   result = "Password valid";
+               }
+           }
+           return result;
+        }
+     */
+//==============================================
+
+
 }
