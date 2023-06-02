@@ -40,7 +40,7 @@ public class Main {
             return "Password is too weak. Please choose a more complex password.";
         } else {
             // Weitere Überprüfungen auf Passwortstärke...
-            return "";
+            return checkPasswordComplexity(password);
         }
     }
     // Errorausgabe für Checks
