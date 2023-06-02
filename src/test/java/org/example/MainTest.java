@@ -9,7 +9,7 @@ public class MainTest {
         //Given int number = 2;
 
         //When
-        String actual = Main.checkPasswordStrength("pia234", 8);
+        String actual = Main.checkPasswordLength("pia234", 8);
 
         //Then
         String expected = "Password must have at least 8 characters.";
@@ -18,39 +18,38 @@ public class MainTest {
     }
 
     @Test
-    void testCheckPasswordStrength() {
-        //Given int number = 2;
-
-        //When
-        String actual = Main.checkPasswordStrength("Piapiapia", 8);
-
-        //Then
-        String expected = "Password must contain at least one number. ";
-
-        Assertions.assertEquals(expected, actual);
-    }
-    @Test
     void testCheckPasswordStrength1() {
         //Given int number = 2;
 
         //When
-        String actual = Main.checkPasswordStrength("pia2345678", 8);
+        String actual = Main.checkPasswordStrength("Pia123");
 
         //Then
-        String expected = "Password must contain at least one uppercase letter. ";
+        String expected = "Password is too weak. Please choose a more complex password.";
 
         Assertions.assertEquals(expected, actual);
     }
-
     @Test
-    void testCheckPasswordStrength2() {
+    void testCheckPasswordComplexity() {
         //Given int number = 2;
 
         //When
-        String actual = Main.checkPasswordStrength("PIA2345678", 8);
+        String actual = Main.checkPasswordComplexity("pia123");
 
         //Then
-        String expected = "Password must contain at least one lowercase letter. ";
+        String expected = "Password must contain at least one uppercase character.";
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    void testCheckPasswordComplexity2() {
+        //Given int number = 2;
+
+        //When
+        String actual = Main.checkPasswordComplexity("PIAPIA123");
+
+        //Then
+        String expected = "Password must contain at least one lowercase character.";
 
         Assertions.assertEquals(expected, actual);
     }

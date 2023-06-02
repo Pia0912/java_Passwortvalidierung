@@ -38,18 +38,17 @@ public class Main {
     }
     // Überprüfung auf Großbuchstaben
     public static String checkPasswordComplexity(String password) {
-
-        if (!checkIfCapitalLettersIncluded(password)) {
-            return "Password must contain at least one uppercase character.";
-        }
-
-        if (!checkIfLowerCaseLettersIncluded(password)) {
-            return "Password must contain at least one uppercase character.";
-        }
-
         // Überprüfung auf Zahlen
         if (!checkIfNumbersIncluded(password)) {
             return "Password must contain at least one number.";
+        }
+        // Überprüfung auf Großbuchstaben
+        if (!checkIfCapitalLettersIncluded(password)) {
+            return "Password must contain at least one uppercase character.";
+        }
+        // Überprüfung auf Kleinbuchstaben
+        if (!checkIfLowerCaseLettersIncluded(password)) {
+            return "Password must contain at least one lowercase character.";
         }
 
         // Weitere Überprüfungen auf Passwortstärke...
