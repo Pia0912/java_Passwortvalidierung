@@ -31,10 +31,16 @@ public class Main {
     // Überprüfung der Passwortstärke
     public static String checkPasswordStrength(String password) {
         // Überprüfung auf bekannte schwache Passwörter
-        if (password.contains("123")) {
+        if (password.contains("123") ||password.contains("1234") ||
+                password.contains("12345") ||
+                password.contains("123456") ||
+                password.contains("12345678") ||
+                password.contains("123456789") ||
+                password.contains("passwort")) {
             return "Password is too weak. Please choose a more complex password.";
+        } else {
+            return "";
         }
-        return checkPasswordComplexity(password);
     }
     // Überprüfung auf Großbuchstaben
     public static String checkPasswordComplexity(String password) {
