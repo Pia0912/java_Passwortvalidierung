@@ -1,6 +1,19 @@
+import java.util.Scanner;
+
+
 public class Main {
     public static void main(String[] args) {
-        //String Test = checkIfKnownWeakPasswordsIncluded("123");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please insert password: ");
+        String password = scanner.nextLine();
+
+        System.out.println("Password length is: " + checkStringLength(password));
+        System.out.println("Password has numbers included: " + checkIfNumbersIncluded(password));
+        System.out.println("Password has capital letters included: " + checkIfCapitalLettersIncluded(password));
+        System.out.println("Password weakness: " + checkIfKnownWeakPasswordsIncluded(password));
+
+
+
     }
 
 
@@ -23,9 +36,8 @@ public class Main {
         }
     }
 
-
     public static String checkIfKnownWeakPasswordsIncluded(String word) {
-        String result = switch (word) {
+        String result = switch (word.toLowerCase()) {
             case "123" -> "Password not strong enough";
             case "1234" -> "Password not strong enough";
             case "123456" -> "Password not strong enough";
